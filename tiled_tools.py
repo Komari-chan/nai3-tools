@@ -92,26 +92,26 @@ def merge_images_with_alpha(images, image_size, original_size, overlap_percent):
 
     return base_image
 
-def process_image(image_path):
-    # 打开并处理图像
-    image = Image.open(image_path)
-    original_size = (image.width, image.height)  # 保存原始尺寸
+# def process_image(image_path):
+#     # 打开并处理图像
+#     image = Image.open(image_path)
+#     original_size = (image.width, image.height)  # 保存原始尺寸
     
-    # 第一步：先放大图片 2.5 倍
-    image = resize_image(image)
+#     # 第一步：先放大图片 2.5 倍
+#     image = resize_image(image)
 
-    # 第二步：裁剪成9个块，每块的大小与原图一致
-    crops = crop_image_with_overlap(image, original_size)
+#     # 第二步：裁剪成9个块，每块的大小与原图一致
+#     crops = crop_image_with_overlap(image, original_size)
 
-    # 第三步：对每个块进行图生图处理 (此处省略图生图的部分)
+#     # 第三步：对每个块进行图生图处理 (此处省略图生图的部分)
 
-    # 第四步：拼接并应用渐变处理，重叠区域为原图大小的 0.25
-    final_image = merge_images_with_alpha(crops, image.size, original_size, overlap_percent=0.25)
+#     # 第四步：拼接并应用渐变处理，重叠区域为原图大小的 0.25
+#     final_image = merge_images_with_alpha(crops, image.size, original_size, overlap_percent=0.25)
 
-    # 保存最终结果
-    final_image.save("final_image_with_alpha.png")
+#     # 保存最终结果
+#     final_image.save("final_image_with_alpha.png")
 
-    print("图像处理完成，已保存 final_image_with_alpha.png")
+#     print("图像处理完成，已保存 final_image_with_alpha.png")
 
-# 示例使用
-process_image("input_image.png")
+# # 示例使用
+# process_image("input_image.png")
