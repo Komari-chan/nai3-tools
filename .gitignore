@@ -1,0 +1,51 @@
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment folders
+venv/
+env/
+.venv/
+
+# MacOS
+.DS_Store
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs and debug files
+*.log
+
+# Cache files
+.cache/
+*.cache
+
+# Configuration files
+*.ini
+*.toml
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Python egg files
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Ignore environment variables
+.env
+
+# Ignore local test databases
+*.sqlite3
+
+# Ignore compiled C extensions
+*.so
+
+# Coverage reports
+.coverage
+coverage.xml
+htmlcov/
