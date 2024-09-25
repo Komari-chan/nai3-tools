@@ -44,23 +44,22 @@ def batch_process_images(input_dir, output_dir, positive_prompt, negative_prompt
         except Exception as e:
             print(f"处理图片 {image_file} 时发生错误: {e}")
 
-        time.sleep(1)  # 控制处理节奏，避免过快请求服务器
+        time.sleep(1)  # 避免过快请求服务器
 
     print("所有图片处理完成。")
 
 if __name__ == "__main__":
-    # 用户可调参数
-    positive_prompt = "koshigaya komari, [[[[non non biyori]]]], tab head, torino aqua, ogipote, 58 (opal 00 58), sheya, wlop, ciloranko, sho (sho lwlw), reoen, ask (askzy), as109, ye jji, noyu (noyu23386566), konya karasue, kedama milk, u u zan,colorful, high contrast, light rays, year 2023"
+    positive_prompt = "[artist:kedama milk],artist:ciloranko,artist:ke-ta,artist:hiten,[artist:ask_(askzy)],[artist:nekoda_(maoda)],[artist:as109], colorful, high contrast, light rays, year 2023"
     negative_prompt = "nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract]"
     scale = 5
-    sampler = "k_dpmpp_2m_sde"  # 用户可以选择的采样器
+    sampler = "k_euler"  
     steps = 28
     strength = 0.35
     noise = 0
-    noise_schedule = "karras"  # 用户可以选择的 noise_schedule
+    noise_schedule = "karras"  
     api_key = "pst-Xl7JptkKqyg2Y6rPhYnBjdJpzDk2IPUmiG8VGNDpC2qWGCnZTJD0GJcRfZKkxQXl"
-    general_thresh = 0.3  # 用户输入的 wd general_thresh
-    character_thresh = 0.9  # 用户输入的 wd character_thresh
+    general_thresh = 0.3  
+    character_thresh = 0.9  
     use_wd = True
 
     # 运行批量处理
