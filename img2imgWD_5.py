@@ -9,7 +9,7 @@ from zipfile import ZipFile
 from PIL import Image
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from gradio_client import Client, handle_file
-from tiled_tools_bz import crop_image, merge_images_with_gradient
+from tiled_tools_5 import crop_image, merge_images_with_gradient
 
 # NovelAI API 的 URL
 NOVELAI_API_URL = "https://image.novelai.net/ai/generate-image"
@@ -140,8 +140,17 @@ def process_image_with_novelai(image_path, positive_prompt, negative_prompt, sca
     image = Image.open(image_path)
     original_size = (image.width, image.height)
 
+    # 计算裁剪块大小
+    crop_width, crop_height = image.width // 5, image.height // 5
+    crop_width = (crop_width // 64) * 64  # 调整为64的倍数
+    crop_height = (crop_height // 64) * 64
+
+    overlap_x = crop_width // 5  # 水平方向20%重叠
+    overlap_y = crop_height // 5  # 垂直方向20%重叠
+
+    # 裁剪图像
     print("正在裁剪图片...")
-    crops = crop_image(image, crop_width=832, crop_height=1216, overlap_x=150, overlap_y=110)  # 使用固定裁剪大小和重叠量
+    crops = crop_image(image, crop_width, crop_height, overlap_x, overlap_y)
 
     reworked_crops = []
     wd_prompts = []
@@ -180,25 +189,25 @@ def process_image_with_novelai(image_path, positive_prompt, negative_prompt, sca
         reworked_crops.append(novelai_img2img(crops[-1], f"{positive_prompt}, {wd_prompts[-1]}", negative_prompt, crops[-1].width, crops[-1].height, scale, sampler, steps, strength, noise, noise_schedule, api_key, len(crops) - 1))
 
     print("正在拼接图片...")
-    final_image = merge_images_with_gradient(reworked_crops, crop_width=832, crop_height=1216, overlap_x=150, overlap_y=110, grid_size=(4, 8))
+    final_image = merge_images_with_gradient(reworked_crops, crop_width, crop_height, overlap_x, overlap_y, grid_size=(6, 6))
 
     final_image.save("output/final_image_with_novelai_and_auto_prompts.png")
     print("图像处理完成，已保存 final_image_with_novelai_and_auto_prompts.png")
-# 调用函数示例
 
+# 调用函数示例
 if __name__ == "__main__":
     input_img_path = "input_image.png"
-    positive_prompt = "agoto,au_(d_elete),kedama_milk,mochizuki_kei,fkey,dk.senie,icecake,olchas,maccha_(mochancc),mafuyu_(chibi21),fuzichoco,mana_(remana),momoko_(momopoco),tidsean, high contrast, light rays, year 2023, shiny skin, shiny clothes"
+    positive_prompt = "qizhu, 1=2, kase_daiki, icecake, [sheya], blender_(medium), [reoen], alchemaniac, [olchas], [torino_aqua], onineko, [dk.senie], [fajyobore], [freng], [arsenixc], [agoto], high contrast, light rays, year 2023, shiny skin, shiny clothes"
     negative_prompt = "nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract]"
     scale = 5
-    sampler = "k_dpmpp_2m_sde"  # 用户可以选择的采样器
+    sampler = "k_dpmpp_2m_sde"
     steps = 28
     strength = 0.3
     noise = 0
-    noise_schedule = "karras"  # 用户可以选择的 noise_schedule
+    noise_schedule = "karras"
     api_key = "pst-UeGZGd8GDV7utKhemgm8tvcHxtapFaPFcrtaQq4fIZGAniu7KdsH3JqMf3c38H0R"
-    general_thresh = 0.35  # 用户输入的 wd general_thresh
-    character_thresh = 0.9  # 用户输入的 wd character_thresh
+    general_thresh = 0.35
+    character_thresh = 0.9
     use_wd = True
 
     process_image_with_novelai(

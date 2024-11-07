@@ -191,15 +191,15 @@ def process_image_with_novelai(image_path, positive_prompt, negative_prompt, sca
 
 if __name__ == "__main__":
     input_img_path = "input_image.png"
-    positive_prompt = "[plana (blue archive)], qizhu, icecake, torino aqua, ciloranko, [sheya], [kedama milk], tab head, ke-ta, [wlop], [chen bin], [[tianliang duohe fangdongye]], [as109], [[crumbles]], [ask (askzy)], [[noyu (noyu23386566)]], [[aki99]], [[onono imoko]], blue archive, year 2023"
+    positive_prompt = "{{koshigaya komari}}, {{koshigaya_natsumi}}, [[non non biyori]], icecake, qizhu, onineko, olchas, au_(d_elete), [suzumi_(ccroquette)], [missile228], [s16xue], [[milkychu]], [[fkey]], [[sheya]], [[torino_aqua]], [[shimhaq]], [[blender_(medium)]], [[nababa]], [[as109]], [[arsenixc]], [[meion]], [[rei_(sanbonzakura)]], [[dk.senie]], [[alphonse_(white_datura)]], high contrast, light rays, year 2023, "
     negative_prompt = "nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract]"
     scale = 5
     sampler = "k_dpmpp_2m_sde"  # 用户可以选择的采样器
     steps = 28
-    strength = 0.4
+    strength = 0.35
     noise = 0
     noise_schedule = "karras"  # 用户可以选择的 noise_schedule
-    api_key = "pst-Xl7JptkKqyg2Y6rPhYnBjdJpzDk2IPUmiG8VGNDpC2qWGCnZTJD0GJcRfZKkxQXl"
+    api_key = "pst-UeGZGd8GDV7utKhemgm8tvcHxtapFaPFcrtaQq4fIZGAniu7KdsH3JqMf3c38H0R"
     general_thresh = 0.3  # 用户输入的 wd general_thresh
     character_thresh = 0.9  # 用户输入的 wd character_thresh
     use_wd = True

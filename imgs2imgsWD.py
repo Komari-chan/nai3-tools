@@ -49,15 +49,15 @@ def batch_process_images(input_dir, output_dir, positive_prompt, negative_prompt
     print("所有图片处理完成。")
 
 if __name__ == "__main__":
-    positive_prompt = "[artist:kedama milk],artist:ciloranko,artist:ke-ta,artist:hiten,[artist:ask_(askzy)],[artist:nekoda_(maoda)],[artist:as109], colorful, high contrast, light rays, year 2023"
+    positive_prompt = "{{momoi_(blue_archive)}}, maccha_(mochancc), {au_(d_elete)}, {mana_(remana)}, {fuzichoco}, {momoko_(momopoco)}, {nababa}, {mafuyu_(chibi21)}, {rin_yuu}, {sheya}, [dk.senie], [kedama_milk], [[agoto]], fkey, year 2023"
     negative_prompt = "nsfw, lowres, {bad}, error, fewer, extra, missing, worst quality, jpeg artifacts, bad quality, watermark, unfinished, displeasing, chromatic aberration, signature, extra digits, artistic error, username, scan, [abstract]"
     scale = 5
-    sampler = "k_euler"  
+    sampler = "k_dpmpp_2m_sde"  
     steps = 28
     strength = 0.35
     noise = 0
     noise_schedule = "karras"  
-    api_key = "pst-Xl7JptkKqyg2Y6rPhYnBjdJpzDk2IPUmiG8VGNDpC2qWGCnZTJD0GJcRfZKkxQXl"
+    api_key = "pst-UeGZGd8GDV7utKhemgm8tvcHxtapFaPFcrtaQq4fIZGAniu7KdsH3JqMf3c38H0R"
     general_thresh = 0.3  
     character_thresh = 0.9  
     use_wd = True
