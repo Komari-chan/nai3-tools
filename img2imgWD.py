@@ -136,7 +136,7 @@ def novelai_img2img(image, positive_prompt, negative_prompt, width, height, scal
 
 # 顺序处理每个裁剪后的图像，确保提示词获取和重绘按正确顺序执行
 @timer
-def process_image_with_novelai(image_path, positive_prompt, negative_prompt, scale, sampler, steps, strength, noise, noise_schedule, api_key, general_thresh, character_thresh, use_wd=False):
+def process_image_with_novelai(image_path, positive_prompt, negative_prompt, scale, sampler, steps, strength, noise, noise_schedule, api_key, general_thresh, character_thresh, use_wd=False, output_name="output/final_image_with_novelai_and_auto_prompts.png"):
     image = Image.open(image_path)
     original_size = (image.width, image.height)
 
@@ -185,8 +185,9 @@ def process_image_with_novelai(image_path, positive_prompt, negative_prompt, sca
     print("正在拼接图片...")
     final_image = merge_images_with_alpha(reworked_crops, image.size, original_size, overlap_percent=0.25)
 
-    final_image.save("output/final_image_with_novelai_and_auto_prompts.png")
-    print("图像处理完成，已保存 final_image_with_novelai_and_auto_prompts.png")
+    os.makedirs(os.path.dirname(output_name), exist_ok=True)  # 确保输出目录存在
+    final_image.save(output_name)
+    print(f"图像处理完成，已保存 {output_name}")
 # 调用函数示例
 
 if __name__ == "__main__":
