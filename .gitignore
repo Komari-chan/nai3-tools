@@ -52,3 +52,8 @@ build/
 .coverage
 coverage.xml
 htmlcov/
+
+# wd models
+*.msgpack
+*.onnx
+*.safetensors
